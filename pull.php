@@ -11,7 +11,7 @@ include( dirname(dirname(__FILE__))."/Teinte/Build.php" );
   </head>
   <body>
     <div id="center">
-      <h1><a href="pull.php">Administration</a>, <a href="." target="_blank">Gongora</a></h1>
+      <h1><a href="pull.php">Administration</a>, <a href="." target="_blank"><?= $conf['title'] ?></a></h1>
       <form method="POST">
         <label>Mot de passe
           <input name="pass" type="password"/>

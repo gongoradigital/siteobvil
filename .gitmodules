@@ -1,6 +1,8 @@
 [submodule "gongoraobra"]
 	path = gongoraobra
 	url = https://github.com/gongoradigital/gongoraobra.git
+	branch = gh-pages
 [submodule "polemos"]
 	path = polemos
 	url = https://github.com/gongoradigital/polemos.git
+	branch = gh-pages

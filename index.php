@@ -95,8 +95,8 @@ else if ( $base->search ) {
 }
 // pas de livre demandé, montrer un rapport général
 else {
-  readfile('doc/presentation.html');
-  $base->biblio( array( "no", "date", "author", "title" ) );
+  readfile('accueil.html');
+  $base->biblio( array( "date", "author", "title" ) );
 }
             ?>
             <a id="gotop" href="#top">▲</a>
