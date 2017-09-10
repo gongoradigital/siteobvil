@@ -31,25 +31,25 @@ cp _conf.php conf.php
 vi conf.php
 ```
 
-Dans la ligne
-"pass" => null
-remplacer null par une chaîne entre guillemets
+Dans la ligne<br/>
+"pass" => null<br/>
+remplacer null par une chaîne entre guillemets<br/>
 "pass" => "MonMotDePasseQueJeNeRetiensJamais"
 
 Aller voir votre site dans un navigateur, ex:
-http://obvil.paris-sorbonne.fr/corpus/gongora
+http://obvil.paris-sorbonne.fr/corpus/gongora<br/>
 Si aucun texte apparaît, c’est normal, vous êtes invité à visiter la page d’administration
 
-Erreur connue, un message très répété à la mise à jour en ligne
-warning: unable to access '/home/user/.config/git/config': Permission denied
-warning: unable to access '/home/user/.gitconfig': Permission denied
+Erreur connue, un message très répété à la mise à jour en ligne<br/>
+warning: unable to access '/home/user/.config/git/config': Permission denied<br/>
+warning: unable to access '/home/user/.gitconfig': Permission denied<br/>
 Vu avec git version 1.7.12.4. Contournement, autoriser Apache à faire le listing du home de l’utilisateur user. En principe, c'est une très mauvaise idée de sécurité. Mais le bug ne s’est vu que sur un seul serveur avec cette version de git.
 
 Si votre dossier/site ne s’appelle pas gongora, modifier https://github.com/gongoradigital/siteobvil/blob/master/.htaccess en conséquence.
 
 # Administration
 
-http://obvil.paris-sorbonne.fr/corpus/gongosite/pull.php
+http://obvil.paris-sorbonne.fr/corpus/gongosite/pull.php<br/>
 Avec le mot de passe fixé ci-dessus, appuyez sur le bouton mettre à jour.
 
 Le programme délivrera deux séquences d’informations
@@ -57,4 +57,4 @@ Le programme délivrera deux séquences d’informations
 * les messages de la mise à jour distante : un git pull un peu complexe en raison de des sous-modules, cf. https://github.com/gongoradigital/siteobvil/blob/master/_conf.php
 * la liste des fichiers qui seront transformés, avec si nécessaires les messages d’erreurs. La transformation kindle est très exigeante, elle refuse le moindre lien mort.
 
-En général, les erreurs proviennent de fichiers XML mal formés. Parfois, il y a des erreurs plus discrètes de structure qui 
+En général, les erreurs proviennent de fichiers XML mal formés. Parfois, il y a des erreurs de structure qui surprennent la transformation kindle.
