@@ -1,16 +1,20 @@
 <?php
 ini_set('display_errors', '1');
 error_reporting(-1);
+header( 'content-type: text/html; charset=utf-8' );
 $conf = include( dirname(__FILE__)."/conf.php" );
 include( dirname(dirname(__FILE__))."/Teinte/Web.php" );
 include( dirname(dirname(__FILE__))."/Teinte/Base.php" );
-$base = new Teinte_Base( $conf['sqlite'] );
 $path = Teinte_Web::pathinfo(); // document demandé
 $basehref = Teinte_Web::basehref(); //
 $teinte = $basehref."../Teinte/";
-
 // chercher le doc dans la base
 $docid = current( explode( '/', $path ) );
+if ( !file_exists( $conf['sqlite'] )) {
+  echo '<h1>Première installation ? Allez voir la page <a href="pull.php">pull.php</a> pour transformer vos fichiers XML.</h1>';
+  exit();
+}
+$base = new Teinte_Base( $conf['sqlite'] );
 $query = $base->pdo->prepare("SELECT * FROM doc WHERE code = ?; ");
 $query->execute( array( $docid ) );
 $doc = $query->fetch();
