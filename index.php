@@ -2,7 +2,12 @@
 ini_set('display_errors', '1');
 error_reporting(-1);
 header( 'content-type: text/html; charset=utf-8' );
-$conf = include( dirname(__FILE__)."/conf.php" );
+if ( !file_exists( $path = dirname(__FILE__)."/conf.php" ) ) {
+  echo '<h1>Problème de configuration, fichier conf.php introuvable.</h1>';
+}
+else {
+  $conf = include( $path );
+}
 include( dirname(dirname(__FILE__))."/Teinte/Web.php" );
 include( dirname(dirname(__FILE__))."/Teinte/Base.php" );
 $path = Teinte_Web::pathinfo(); // document demandé

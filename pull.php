@@ -1,4 +1,9 @@
 <?php
+header( 'content-type: text/html; charset=utf-8' );
+ini_set('display_errors', '1');
+error_reporting(-1);
+set_time_limit(0);
+
 $conf = include( dirname(__FILE__)."/conf.php" );
 include( dirname(dirname(__FILE__))."/Teinte/Build.php" );
 
@@ -8,6 +13,7 @@ include( dirname(dirname(__FILE__))."/Teinte/Build.php" );
     <meta charset="UTF-8" />
     <title>Administration, Discours sur la danse, OBVIL</title>
     <link rel="stylesheet" type="text/css" href="../Teinte/tei2html.css" />
+    <style> #center { padding: 1em; } </style>
   </head>
   <body>
     <div id="center">

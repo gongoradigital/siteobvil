@@ -3,5 +3,4 @@ epub/
 kindle/
 toc/
 *.sqlite
-
 conf.php
