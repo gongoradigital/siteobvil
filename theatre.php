@@ -54,14 +54,13 @@ if ($play) {
   echo '
 <details>
   <summary>Graphe d’interlocution <i>(cliquez ici pour plus d’explications)</i></summary>
-  <p>Ce graphe est généré automatiquement à partir du texte balisé de la pièce de théâtre. Chaque pastille est un personnage, dont la taille est proportionnelle à la quantité de paroles qui lui sont attribuées. Les flèches indiquent à qui s’adresse ces paroles. Le placement des pastilles résulte d’un algorithme automatique cherchant à éviter les croisements entre les flèches. Jouer avec les boutons ci-dessous, notamment le mélange aléatoire (♻) et la relance de l’algorithme (►), permet de mieux saisir ce qui est arbitraire ou déterminé par le poids des paroles dans la disposition relative des personnages. Les couleurs sont des convenances facilitant la lecture, elles résultent d’une combinatoire entre sexe, âge, et statut des personnages. Retrouvez <a href="#tables">ci-desssous</a> les tables de données avec lesquelles l’image est produite. Entre autres publications sur cet instrument, ce <a target="_blank" href="https://resultats.hypotheses.org/749">billet</a> donne des exemples d’interprétation.</p>
+  <p>Ce graphe est généré automatiquement à partir du texte balisé de la pièce de théâtre. Chaque pastille est un personnage, dont la taille est proportionnelle à la quantité de paroles qui lui sont attribuées. Les flèches indiquent à qui s’adresse ces paroles. Le placement des pastilles résulte d’un algorithme automatique cherchant à éviter les croisements entre les flèches. Jouer avec les boutons ci-dessous, notamment le mélange aléatoire (♻) et la relance de l’algorithme (►), permet de mieux saisir ce qui est arbitraire, ou déterminé par le poids des paroles, dans la disposition relative des personnages. Les couleurs sont des convenances facilitant la lecture, elles résultent d’une combinatoire entre sexe, âge, et statut des personnages. Retrouvez <a href="#tables">ci-desssous</a> les tables de données avec lesquelles l’image est produite. Entre autres publications sur cet instrument, ce <a target="_blank" href="https://resultats.hypotheses.org/749">billet</a> donne des exemples d’interprétation.</p>
 </details>
   ';
   echo Dramagraph_Net::graph( $pdo, $docid );
-  echo '<p> </p><section id="text" style="padding: 2rem; background-color: #FFFFFF; max-width: 800px;  ">';
+  echo '<p> </p>';
   $qobj->execute( array( $docid, 'article' ) );
   echo  current( $qobj->fetch(PDO::FETCH_ASSOC)) ;
-  echo '</section>';
   echo '<section class="page" id="tables"> <p> </p>';
   echo Dramagraph_Table::roles( $pdo, $docid );
   echo Dramagraph_Table::relations( $pdo, $docid );

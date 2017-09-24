@@ -4,3 +4,7 @@ kindle/
 toc/
 polemos.sqlite
 conf.php
+
+.htaccess
+
+test-play.csv
