@@ -1,6 +1,9 @@
 # pour install sur serveur
 RewriteEngine on
+
+RewriteBase /gongora/
+RewriteRule ^(.*)gongora_obra-poetica/(poem\d+)$ $1gongora_obra-poetica#$2 [NE,R,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{THE_REQUEST} ^[^/]*(.*/gongora/)?
-RewriteRule  ^(.*)$ %1index.php/$1 [QSA]
+RewriteRule  ^(.*)$ index.php/$1 [QSA]

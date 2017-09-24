@@ -1,6 +1,4 @@
 <?php
-ini_set('display_errors', '1');
-error_reporting(-1);
 header( 'content-type: text/html; charset=utf-8' );
 if ( !file_exists( $path = dirname(__FILE__)."/conf.php" ) ) {
   echo '<h1>Problème de configuration, fichier conf.php introuvable.</h1>';
@@ -13,12 +11,20 @@ include( dirname(dirname(__FILE__))."/Teinte/Base.php" );
 $path = Teinte_Web::pathinfo(); // document demandé
 $basehref = Teinte_Web::basehref(); //
 $teinte = $basehref."../Teinte/";
-// chercher le doc dans la base
-$docid = current( explode( '/', $path ) );
 if ( !file_exists( $conf['sqlite'] )) {
   echo '<h1>Première installation ? Allez voir la page <a href="pull.php">pull.php</a> pour transformer vos fichiers XML.</h1>';
   exit();
 }
+
+// document demandé ?
+$docid = current( explode( '/', $path ) );
+
+// si théâtre, laisser la main au script theatre.php
+if ( $docid == "gongora_comediavenatoria" || $docid == "gongora_firmezasisabela" || $docid == "gongora_doctorcarlino" ) {
+  include( 'theatre.php' );
+  exit();
+}
+
 $base = new Teinte_Base( $conf['sqlite'] );
 $query = $base->pdo->prepare("SELECT * FROM doc WHERE code = ?; ");
 $query->execute( array( $docid ) );
@@ -67,7 +73,7 @@ if ( $doc ) {
 </header>
 <form action="#mark1">
   <a title="Retour aux résultats" href="'.$basehref.'?'.$_COOKIE['lastsearch'].'"><img src="'.$basehref.'../theme/img/fleche-retour-corpus.png" alt="←"/></a>
-  <input name="q" value="'.str_replace( '"', '&quot;', $base->p['q'] ).'"/><button type="submit">🔎</button>
+  <input name="q" placeholder="Rechercher dans ce texte" value="'.str_replace( '"', '&quot;', $base->p['q'] ).'"/><button type="submit">🔎</button>
 </form>
 ';
 
@@ -78,7 +84,7 @@ if ( $doc ) {
 else {
   echo'
 <form action="">
-  <input style="width: 100%;" name="q" class="text" placeholder="Rechercher de mots" value="'.str_replace( '"', '&quot;', $base->p['q'] ).'"/>
+  <input style="width: 100%;" name="q" class="text" placeholder="Rechercher dans la polémique" value="'.str_replace( '"', '&quot;', $base->p['q'] ).'"/>
   <div><label>De <input placeholder="année" name="start" class="year" value="'.$base->p['start'].'"/></label> <label>à <input class="year" placeholder="année" name="end" value="'.$base->p['end'].'"/></label></div>
   <button type="reset" onclick="return Form.reset(this.form)">Effacer</button>
   <button type="submit" style="float: right; ">Rechercher</button>

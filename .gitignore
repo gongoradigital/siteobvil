@@ -2,5 +2,5 @@ article/
 epub/
 kindle/
 toc/
-*.sqlite
+polemos.sqlite
 conf.php
