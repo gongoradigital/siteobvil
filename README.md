@@ -43,5 +43,7 @@ Modifier RewriteBase
 
 ## Théâtre et Dramagraph
 
+`php ../Dramagraph/Base.php gongora_teatro.sqlite ../gongoraobra/gongora_firmezasisabela.xml ../gongoraobra/gongora_comediavenatoria.xml ../gongoraobra/gongora_doctorcarlino.xml`
+
 ## TODO, poésie
 
