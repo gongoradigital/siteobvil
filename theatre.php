@@ -38,11 +38,11 @@ div.graph { position: relative; height: 600px; }
 $pdo = new PDO('sqlite:'.$sqlite);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 $play = $pdo->query("SELECT * FROM play WHERE code = ".$pdo->quote( $docid ))->fetch();
+$qobj = $pdo->prepare("SELECT cont FROM object WHERE playcode = ? AND type = ?");
 
-if ($play) {
-  $qobj = $pdo->prepare("SELECT cont FROM object WHERE playcode = ? AND type = ?");
-  $qobj->execute( array( $docid, 'charline' ) );
-  echo  current( $qobj->fetch(PDO::FETCH_ASSOC)) ;
+if ( $docid ) {
+  echo "<div><b>Índice</b> (pinche en los globos para llegar a la porción de texto correspondiente)</div>";
+  echo Dramagraph_Charline::pannel( $pdo, array( "playcode"=>$docid, "rythm"=>false, "width"=>290 ) );
 }
 ?>
     </aside>
@@ -53,8 +53,10 @@ if ($play) {
   echo '<h1>'.$play['author']."<br/>".$play['title'].'</h1>';
   echo '
 <details>
-  <summary>Graphe d’interlocution <i>(cliquez ici pour plus d’explications)</i></summary>
-  <p>Ce graphe est généré automatiquement à partir du texte balisé de la pièce de théâtre. Chaque pastille est un personnage, dont la taille est proportionnelle à la quantité de paroles qui lui sont attribuées. Les flèches indiquent à qui s’adresse ces paroles. Le placement des pastilles résulte d’un algorithme automatique cherchant à éviter les croisements entre les flèches. Jouer avec les boutons ci-dessous, notamment le mélange aléatoire (♻) et la relance de l’algorithme (►), permet de mieux saisir ce qui est arbitraire, ou déterminé par le poids des paroles, dans la disposition relative des personnages. Les couleurs sont des convenances facilitant la lecture, elles résultent d’une combinatoire entre sexe, âge, et statut des personnages. Retrouvez <a href="#tables">ci-dessous</a> les tables de données avec lesquelles l’image est produite.</p>
+
+<summary>Gráfico de interlocución <i>(pinche aquí para una descripción más detallada)</i></summary>
+<p>Este gráfico se genera de forma automática a partir de la codificación de la obra. Cada disco representa un personaje y su tamaño es proporcional al número de palabras que pronuncia. Las flechas indican a quien las dirige. La distribución de estos discos se basa en un algoritmo para evitar que se crucen las flechas. Los botones situados debajo del gráfico (♻ para mezclar los discos de forma aleatoria, ► para volver a aplicar el algoritmo), pueden ayudar a diferenciar lo que es arbitrario en la disposición relativa de los personajes y lo que, al contrario, viene determinado por la cantidad de las palabras. Los colores han sido elegidos convencionalmente para facilitar la lectura y resultan de una combinación entre género, edad y estatuto de los personajes. <a href="#tables">Abajo</a> encontrará las bases de datos en las que se basa esta imagen.</p>
+
 </details>
   ';
   echo Dramagraph_Net::graph( $pdo, $docid );
