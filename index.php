@@ -67,11 +67,24 @@ echo $conf['title'];
 if ( $doc ) {
   // if (isset($doc['download'])) echo $doc['download'];
   // auteur, titre, date
+
+  echo "\n".'<nav id="download"><small>Télécharger :</small>';
+  if ( strpos($doc['code'], 'gongora_')===0 ) echo '  <a target="_blank" href="http://gongoradigital.github.io/gongoraobra/'.$doc['code'].'.xml">tei</a>';
+  else echo '  <a target="_blank" href="http://gongoradigital.github.io/polemos/'.$doc['code'].'.xml">tei</a>';
+
+  echo ', <a target="_blank" href="epub/'.$doc['code'].'.epub">epub</a>';
+  echo ', <a target="_blank" href="kindle/'.$doc['code'].'.mobi">kindle</a>';
+  echo ', <a target="_blank" href="markdown/'.$doc['code'].'.md">txt</a>';
+  echo ', <a target="_blank" href="iramuteq/'.$doc['code'].'.txt"">iramuteq</a>';
+  echo ', <a target="_blank" href="html/'.$doc['code'].'.html">html</a>';
+  echo '.</nav>';
+
   echo '
 <header>
   <a class="title" href="' . $basehref . $doc['code'] . '">'.$doc['title'].'</a>
-</header>
-<form action="#mark1">
+</header>';
+
+  echo'<form action="#mark1">
   <a title="Retour aux résultats" href="'.$basehref.'?'.$_COOKIE['lastsearch'].'"><img src="'.$basehref.'../theme/img/fleche-retour-corpus.png" alt="←"/></a>
   <input name="q" placeholder="Rechercher dans ce texte" value="'.str_replace( '"', '&quot;', $base->p['q'] ).'"/><button type="submit">🔎</button>
 </form>
@@ -82,6 +95,17 @@ if ( $doc ) {
 }
 // accueil ? formulaire de recherche général
 else {
+
+  echo "\n".'<nav id="download"><small>Téléchagements :</small>';
+  echo ', <a target="_blank" href="https://github.com/gongoradigital/polemos">tei polémica</a>';
+  echo ', <a target="_blank" href="https://github.com/gongoradigital/gongoraobra">tei obra</a>';
+  echo ', <a target="_blank" href="epub/">epub</a>';
+  echo ', <a target="_blank" href="kindle/">kindle</a>';
+  echo ', <a target="_blank" href="markdown/">txt</a>';
+  echo ', <a target="_blank" href="iramuteq/">iramuteq</a>';
+  echo ', <a target="_blank" href="html/">html</a>';
+  echo '.</nav>';
+
   echo'
 <form action="">
   <input style="width: 100%;" name="q" class="text" placeholder="Rechercher dans la polémique" value="'.str_replace( '"', '&quot;', $base->p['q'] ).'"/>
