@@ -1,3 +1,4 @@
+table.table {font-size: 70%}
 td.title { font-style: normal; }
 article.poem h1 { font-family: inherit; font-weight: normal; text-transform: uppercase; line-height: 1.7em; font-size: 90%; }
 article.poem h1 span.center { font-size: 130%; }
